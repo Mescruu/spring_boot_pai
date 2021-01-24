@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+        <th:block th:each="type : ${types}">
+
+            <div class="carousel-item" th:classappend="${typeStat.index == 1} ? active : item">
+                <img class="d-block" th:src="@{${'images/types/'+type.type+'.png'}}" th:alt="${type.type}">
+            </div>
+
+        </th:block>
+
+
+        <div class=" frame " tabindex="2" role="dialog">
+            <div class="modal-dialog" style="width: 100%; max-width: 1200px; " role="document">
+                <div class="modal-content p-5">
+                    <div class="header mb-5">
+                        <h1 class="text-center text-white">Choose meal type!</h1>
+                    </div>
+                    <div class="body mb-5 py-5">
+
+                        <div class="d-flex flex-wrap bg-dark image-box">
+
+                            <th:block th:each="type : ${types}">
+
+                                <div class="type_photo">
+                                    <a th:href="'/types/'+${type.getType}">
+                                        <img class="d-block w-100" th:src="@{${'images/types/'+type.type+'.webp'}}" th:alt="${type.type}">
+                                        <span th:text="${type.getType}"></span>
+                                    </a>
+                                </div>
+
+                            </th:block>
+
+                            <div class="type_photo">
+                                <a th:href="@{/recipes/own}">
+                                    <img class="d-block w-100" src="images/types/back.webp" alt="back">
+                                    <span>Your recipes</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

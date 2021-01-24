@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head" >
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap
+    https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-autocomplete
+
+    https://frontbackend.com/thymeleaf/how-to-add-bootstrap-css-and-js-to-thymeleaf
+        <link th:rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css} "/>
+    -->
+    <title>Spring login application - Politechnika Lubelska</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/css/main.css}"/>
+
+    <style>
+
+        .error{
+            color: whitesmoke;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 3px gray, 0 0 5px gray;
+
+        }
+
+        body{
+            margin: auto;
+        }
+        .container{
+            width: 100%;
+            max-width: 1200px;
+            padding: 0px;
+        }
+
+        a {
+            font-family: Andale Mono, monospace	;
+            text-decoration: none;
+            font-style: italic;
+            font-weight: lighter;
+        }
+
+        footer{
+            background: #343a40;
+
+            font-family: Andale Mono, monospace	;
+            text-decoration: none;
+            font-style: italic;
+            font-weight: lighter;
+
+            color: whitesmoke;
+        }
+        th,td {border: solid 1px black;padding: 5px;}
+    </style>
+
+
+</head>
+<body>
+
+<div th:fragment="navigationPanel">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <a class="navbar-brand" th:href="@{/}">Your recipe book</a>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li sec:authorize="!isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light m-2" th:href="@{/register}">Sign up</a></li>
+                        <li sec:authorize="isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light m-2" th:href="@{/profile}">Profile</a></li>
+                        <li sec:authorize="isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light m-2" th:href="@{/recipes/own}">Your recipes</a></li>
+
+                        <li sec:authorize="isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light m-2" th:href="@{/types}">Meal types</a></li>
+                        <li sec:authorize="isAuthenticated()" class="nav-item">
+                            <a class="btn btn-light m-2" th:href="@{/recipes/add}">Add recipe!</a></li>
+
+                        <li sec:authorize="!isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light m-2" th:href="@{/login}">Sign in</a></li>
+                        <li sec:authorize="isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light m-2" th:href="@{/logout}">Sign out</a></li>
+                    </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+
+<div th:fragment="footer">
+    <footer class="footer">
+        <div class="container">
+            <p class="pt-3">Politechnika Lubelska, Recipebook project - Albert Wos</p>
+        </div>
+    </footer>
+    <!--JQuery + bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js" integrity="sha512-7yA/d79yIhHPvcrSiB8S/7TyX0OxlccU8F/kuB8mHYjLlF1MInPbEohpoqfz0AILoq5hoD7lELZAYYHbyeEjag==" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

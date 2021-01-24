@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+            <th:block th:each="type : ${types}">
+
+                <div class="carousel-item" th:classappend="${typeStat.index == 1} ? active : item">
+                    <img th:src="@{${'images/types/'+type.type+'.png'}}" th:alt="${type.type}">
+                </div>
+
+            </th:block>
+
+
+                <div class=" frame " tabindex="2" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content p-5">
+                            <div class="header mb-5">
+                                <h1 class="text-center text-white">Welcome to recipe book!</h1>
+                            </div>
+                            <div class="body mb-5 py-5">
+                                <h5 class="text-center text-white">Keep your family's favorite recipes (looking at you, Mom's mac and cheese!) on the counter with these beautiful recipe books..</h5>
+
+                            </div>
+                            <div class="footer text-center">
+                                <h4 class="text-center text-white">Click button below and get access!</h4>
+                                <hr>
+                                <div class="inline-block">
+
+                                </div>
+                                <a class="btn btn-outline-light m-2" th:href="@{/register}">Sign up!</a></li>
+
+                                <a class="btn btn-outline-light m-2" th:href="@{/login}">Sign in!</a></li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>

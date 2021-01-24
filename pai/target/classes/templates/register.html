@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+        <th:block th:each="type : ${types}">
+
+            <div class="carousel-item" th:classappend="${typeStat.index == 1} ? active : item">
+                <img class="d-block" th:src="@{${'images/types/'+type.type+'.png'}}" th:alt="${type.type}">
+            </div>
+
+        </th:block>
+
+
+        <div class=" frame " tabindex="2" role="dialog">
+            <div class="modal-dialog my-5" role="document">
+                <div class="modal-content p-5">
+                    <div class="header">
+                        <h1 class="text-center text-white">Registration!</h1>
+                    </div>
+                    <div class="body py-5">
+
+                        <form th:action="@{/register}" method="POST" th:object="${user}"  class="text-center align-middle">
+                            <label for="name">Name:</label><br>
+                            <input class="form-control m-auto" id="name" type="text" th:field="*{name}" placeholder="Imię"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                            <hr class="w-25">
+                            <label for="surname">Surname:</label><br>
+                            <input class="form-control m-auto" id="surname" type="text" th:field="*{surname}" placeholder="Nazwisko"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+                            <hr class="w-25">
+                            <label for="login">Login:</label><br>
+                            <input class="form-control m-auto" id="login" type="text" th:field="*{login}" placeholder="Login"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                            <span class="error text-" th:if="${same_login_error}!=null"  th:text="${same_login_error}"></span> <!-- unikalnosc loginow-->
+
+                            <hr class="w-25">
+                            <label for="login">Password:</label><br>
+                            <input class="form-control m-auto" id="password" type="password" th:field="*{password}" placeholder="Hasło"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                            <hr class="w-25">
+                            <button class="btn btn-block btn-dark" type="submit">Register</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>

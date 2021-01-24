@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body  class="recipe_body" th:style="'background: url(../images/book.png);'">
+
+<div th:include="layout :: navigationPanel"></div>
+
+
+<div class="container recipe_container my-4" style="overflow: auto">
+
+    <div class="row">
+
+        <div class="list-group w-50 m-auto" style="overflow: auto">
+            <th:block th:each="recipe : ${recipes}">
+
+           <a th:href="'/recipe/'+${recipe.getIdrecipe()}" class="list-group-item list-group-item-action flex-column align-items-start p-3 mb-3">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" th:text="${recipe.getName()}"></h5>
+                    <small th:text="${'Prepare time: '+ recipe.getPreptime()}">3 days ago</small>
+                </div>
+                <h5>Notes</h5>
+                <p th:text="${recipe.getNotes()}"></p>
+                <hr>
+                <h5>Ingredients</h5>
+                <p th:text="${recipe.getIngredients()}"></p>
+            </a>
+            </th:block>
+        </div>
+    </div>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>
+
+
+

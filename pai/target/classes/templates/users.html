@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<div class="container mb-3">
+<h2 class="text-center my-3">Lista użytkowników</h2>
+<table class="table table-dark m-auto">
+    <th:block th:each="user : ${users}">
+        <tr>
+            <td th:text="${user.login}">...</td>
+            <td th:text="${user.name}">...</td>
+            <td th:text="${user.surname}">...</td>
+            <td th:text="${user.password}">...</td>
+        </tr>
+    </th:block>
+</table>
+
+    <hr>
+
+    <table class="table table-dark m-auto">
+        <th:block th:each="recipe : ${recipes}">
+
+            <tr>
+                <td th:text="${recipe.getName()}">...</td>
+                <td th:text="${recipe.getEaseOfPrep()}">...</td>
+                <td th:text="${recipe.GetAverageRating()}">...</td>
+                <td th:text="${recipe.getNotes()}">...</td>
+            </tr>
+        </th:block>
+    </table>
+
+    <hr>
+    <table class="table table-dark m-auto">
+        <th:block th:each="type : ${types}">
+            <tr>
+                <td th:text="${type.getType}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>

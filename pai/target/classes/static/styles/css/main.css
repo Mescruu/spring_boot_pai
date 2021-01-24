@@ -1,0 +1,281 @@
+.carousel .carousel-inner{
+    height: auto !important;
+    max-height: 86vh;
+    position: relative;
+}
+html{
+    background: #343a40;
+}
+
+body{
+    background: #343a40;
+}
+
+.carousel-item img{
+    width: 100vw;
+    height: auto;
+}
+.frame{
+    position: absolute; /* or absolute */
+
+    width: 100%;
+    height: 86vh;
+    background-color: rgba(52, 58, 64, 0.5);
+    overflow-y: auto;
+
+}
+.frame .modal-dialog{
+
+    margin: auto;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+.frame .modal-dialog{
+
+    margin: auto;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.frame .modal-dialog.recipe{
+    width: 50% !important;
+    margin: auto;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.frame .modal-dialog .modal-content{
+
+    background-color: transparent;
+    border: none;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    max-height: 100vh;
+    font-family: Andale Mono, monospace	;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.frame .modal-dialog .modal-content form label{
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+
+.frame .modal-dialog .modal-content hr{
+    color: whitesmoke;
+}
+
+.image-box{
+width: 100%;
+    height: auto;
+}
+
+.type_photo{
+    width: 25%;
+    height: 300px;
+    position: relative;
+
+}
+.type_photo a{
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+}
+
+.type_photo a img{
+    min-height:100%;
+    height: 100%;
+
+    width: auto;
+    opacity: 0.6;
+    transition: 0.5s;
+}
+.type_photo a img:hover{
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.type_photo a span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    transition: 0.5s;
+    color: whitesmoke;
+    width: 100%;
+    text-align: center;
+}
+.type_photo a:hover span{
+    text-shadow: 0 0 3px black, 0 0 5px black;
+
+}
+
+.recipe_body{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+
+.recipe_container{
+    font-family: Andale Mono, monospace	;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: lighter;
+    height: 100%;
+    overflow-x: hidden !important;
+    min-height: 80vh;
+}
+
+.recipe_container h1,
+.recipe_container h2,
+.recipe_container h3,
+.recipe_container h4{
+color: #343a40;
+}
+.image_container{
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #343a40;
+}
+.recipe_image{
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.card{
+    border-radius: 10px;
+}
+/*ocenianie*/
+
+.rate:not(:checked) > input,
+.average_rate:not(:checked) >input
+{
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label,
+.average_rate:not(:checked) > label{
+    width: 20%;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color: #343a40;
+}
+.rate:not(:checked) > label:before,
+.average_rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label,
+.average_rate > input:checked ~ label{
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label,
+.average_rate:not(:checked) > label {
+    float:right;
+    width: 20%;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#343a40;
+}
+.rate:not(:checked) > label:before,
+.average_rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label,
+.average_rate > input:checked ~ label
+
+{
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+@media (max-width: 1200px) {
+
+    .navbar-brand {
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .nav-item a {
+        min-width: 120px;
+        width: 100%;
+    }
+
+    .carousel-item img {
+        width: auto;
+        height: 100%;
+    }
+
+    .list-group {
+        width: 80% !important;
+    }
+
+    .type_photo {
+        width: 50%;
+    }
+
+    .frame {
+        padding-top: 100px;
+    }
+
+    .recipe_container .col-12{
+        padding: 50px;
+        background: white;
+    }
+    .recipe_image {
+        width: 100%;
+        height: auto;
+
+        transform: none;
+        position: relative;
+        margin-bottom: 50px;
+
+        top: unset;
+        left: unset;
+    }
+}

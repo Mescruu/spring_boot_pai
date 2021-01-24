@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body  class="recipe_body" th:style="'background: url(../images/book.png);'">
+<div th:include="layout :: navigationPanel"></div>
+
+
+<div class="container recipe_container my-4">
+
+    <div class="row">
+        <div class="col-xl-6 col-12  image_container">
+            <img class="recipe_image" th:src="${recipe.getPhoto()==''} ? ${'../images/types/'+recipe.getType()+'.png'} : ${recipe.getPhoto()}">
+        </div>
+
+        <div class="col-xl-6 col-12 ">
+
+            <h1 class=" mb-2 text-center" th:text="${recipe.getName()}"> </h1>
+
+            <div class="row mb-3">
+                <div class="col-6  w-100">
+                    <h3 class="w-100 text-center">Users ratings</h3>
+
+                    <div class="average_rate">
+                        <hr class="w-25">
+                        <input type="radio" id="avstar1" name="rate" value="1" disabled  th:checked="${users_ratings == 1}"/>
+                        <label for="avstar1" title="text"></label>
+
+                        <input type="radio" id="avstar2" name="rate" value="2" disabled  th:checked="${users_ratings == 2}"/>
+                        <label for="avstar2" title="text"></label>
+
+                        <input type="radio" id="avstar3" name="rate" value="3" disabled  th:checked="${users_ratings == 3}"/>
+                        <label for="avstar3" title="text"></label>
+
+                        <input type="radio" id="avstar4" name="rate" value="4" disabled  th:checked="${users_ratings == 4}"/>
+                        <label for="avstar4" title="text"></label>
+
+
+                        <input type="radio" id="avstar5" name="rate" value="5" disabled  th:checked="${users_ratings == 5}"/>
+                        <label for="avstar5" title="text"></label>
+                    </div>
+
+                </div>
+                <div class="col-6 text-center">
+                    <h3 class="w-100 text-center">Changed your mind?</h3>
+
+                    <hr class="w-25">
+
+                    <a class="btn btn-outline-dark w-50" th:href="'/recipe/'+${recipe.getIdrecipe()}">Back</a>
+
+                </div>
+            </div>
+
+
+            <div class="bg-white p-3 card">
+
+                <div id="ingredients_list">
+
+
+                    <form th:action="'/editrecipe/'+${recipe.getIdrecipe()}" method="POST" th:object="${new_recipe}"  class="text-center align-middle">
+                        <input hidden name="userid" th:field="*{userid}" th:value="${user_id}"/>
+
+                        <label for="name">Name:</label><br>
+                        <input class="form-control m-auto" id="name" type="text" th:field="*{name}" th:value="${recipe.getName()}" placeholder="Empty if not want to change"/><br>
+                        <span class="error text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        <hr class="w-25">
+
+                        <label for="notes">Notes:</label><br>
+                        <input class="form-control m-auto" id="notes" type="text" th:field="*{notes}" th:value="${recipe.getNotes()}" placeholder="Empty if not want to change"/><br>
+                        <span class="error text-danger" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></span>
+                        <hr class="w-25">
+
+
+                        <label for="types">Types</label>
+                        <select class="form-control" id="types" th:field="*{type}">
+
+                            <th:block th:each="type : ${types}">
+                                <!-- selected jezeli th:selected="${type.type == recipe.getType()}" wynosi true-->
+                                <option th:value="${type.type}" th:text="${type.type}" th:selected="${type.type == recipe.getType()}" placeholder="Empty if not want to change"></option>
+                            </th:block>
+                        </select>
+                        <hr class="w-25">
+
+                        <label for="preptime">Prepare time:</label><br>
+                        <input class="form-control m-auto" id="preptime" type="text" th:field="*{preptime}" th:value="${recipe.getPreptime()}" placeholder="Empty if not want to change"/><br>
+                        <span class="error text-danger" th:if="${#fields.hasErrors('preptime')}" th:errors="*{preptime}"></span>
+                        <hr class="w-25">
+
+                        <label for="photo">Photo url:</label><br>
+                        <input class="form-control m-auto" id="photo" type="text" th:field="*{photo}" th:value="${recipe.getPhoto()}" placeholder="Empty if not want to change"/><br>
+                        <span class="error text-danger" th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}"></span>
+                        <hr class="w-25">
+
+                        <label for="ingredients">Ingredients separated by comma:</label><br>
+                        <input class="form-control m-auto" id="ingredients" type="text" th:field="*{ingredients}" th:value="${recipe.getIngredients()}" placeholder="Empty if not want to change"/><br>
+                        <span class="error text-danger" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></span>
+
+                        <hr class="w-25">
+                        <button class="btn btn-block btn-outline-dark" type="submit">Confirm!</button>
+
+                    </form>
+
+                    <hr>
+
+                    <h2 class="text-center text-white">Remove your account</h2>
+
+                    <form th:action="'/removerecipe/'+${recipe.getIdrecipe()}" method="POST" class="text-center">
+                        <input  class="btn btn-block btn-dark" type="submit" name="removeRecipe" value="remove">
+                    </form>
+            </div>
+
+
+
+
+            <script>
+                //drukowanie
+                function printContent(el){
+                    var restorepage = $('body').html();
+                    var printcontent = $('#' + el).clone();
+                    $('body').empty().html(printcontent);
+                    window.print();
+                    $('body').html(restorepage);
+                }
+            </script>
+
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+        <th:block th:each="type : ${types}">
+
+            <div class="carousel-item" th:classappend="${typeStat.index == 1} ? active : item">
+                <img class="d-block" th:src="@{${'images/types/'+type.type+'.png'}}" th:alt="${type.type}">
+            </div>
+
+        </th:block>
+
+
+        <div class=" frame " tabindex="2" role="dialog">
+            <div class="modal-dialog my-5" role="document">
+                <div class="modal-content">
+                    <div class="header mb-5">
+                        <h1 class="text-center text-white" th:text="'Hello ' +${user.name} + ' ' + ${user.surname}"></h1>
+                    </div>
+                    <div class="body mb-5 py-5 scroll-bar">
+
+                        <h2 class="text-center text-white">Edit your account</h2>
+                        <form th:action="@{/edituser}" method="POST" th:object="${user}" class="text-center" >
+
+                            <label for="login">Login:</label><br>
+                            <input class="form-control m-auto" type="text" id="login" readonly th:field="*{login}" th:value="${user.login}"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                            <hr class="w-25">
+
+                            <label for="name">Name:</label><br>
+                            <input class="form-control m-auto" type="text" id="name" th:field="*{name}" th:value="${user.name}"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+                            <hr class="w-25">
+                            <label for="surname">Surname:</label><br>
+                            <input class="form-control  m-auto" type="text" id="surname" th:field="*{surname}" th:value="${user.surname}"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+
+                            <hr class="w-25">
+                            <label for="password">Password:</label><br>
+                            <input class="form-control m-auto" type="password" id="password" th:field="*{password}"/><br>
+                            <span class="error text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+
+                            <hr class="w-25">
+                            <button  class="btn btn-block btn-dark"  type="submit">Edit</button>
+                        </form>
+
+                        <hr>
+
+                    </div>
+                    <div class="footer text-center mb-5 pb-5">
+                        <h2 class="text-center text-white">Remove your account</h2>
+
+                        <form th:action="@{/removeuser}" method="POST" class="text-center">
+                            <input  class="btn btn-block btn-dark" type="submit" name="removeUser" value="remove">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:include="layout :: footer"></div>
+
+
+</body>
+</html>

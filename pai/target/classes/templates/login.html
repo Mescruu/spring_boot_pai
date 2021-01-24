@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"></head>
+<div th:include="layout::navigationPanel"></div>
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+        <th:block th:each="type : ${types}">
+
+            <div class="carousel-item" th:classappend="${typeStat.index == 1} ? active : item">
+                <img class="d-block" th:src="@{${'images/types/'+type.type+'.png'}}" th:alt="${type.type}">
+            </div>
+
+        </th:block>
+
+
+        <div class=" frame " tabindex="2" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-5">
+                    <div class="header">
+                        <h1 class="text-center text-white">Sign in!</h1>
+                    </div>
+                    <div class="body py-5">
+
+                        <form th:action="@{/login}" method="POST" class="text-center align-middle">
+
+                            <label for="login">Login:</label><br>
+                            <input class="form-control m-auto" id="login" type="text" name="login" placeholder="Login"/>
+
+                            <hr class="w-25">
+                            <label for="password">Password:</label><br>
+                            <input class="form-control m-auto" id="password" type="password" name="passwd" placeholder="Password"/>
+
+                            <hr class="w-25">
+                            <button class="btn btn-block btn-dark" type="submit">Sign in</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div th:include="layout :: footer"></div>
